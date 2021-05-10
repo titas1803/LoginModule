@@ -1,2 +1,2 @@
 # LoginModule
-Project created by Titas Sarkar and during Capgemini Training.
+Project created by Titas Sarkar and Soumendu Maitra during Capgemini Training.
