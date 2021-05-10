@@ -24,6 +24,9 @@ public class Login {
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "login_Id")
 	private User user;
+	
+	@Column(name="login_role")
+	private String role;
 
 	public Login() {
 		
@@ -56,6 +59,14 @@ public class Login {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	
