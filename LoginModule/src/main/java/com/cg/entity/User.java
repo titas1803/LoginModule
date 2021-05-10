@@ -2,6 +2,7 @@ package com.cg.entity;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -102,8 +103,8 @@ public class User {
 		this.location = location;
 	}
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="userid", referencedColumnName = "user_id")
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//	@JoinColumn(name="userid", referencedColumnName = "user_id")
 	private Login login=new Login();
 	
 

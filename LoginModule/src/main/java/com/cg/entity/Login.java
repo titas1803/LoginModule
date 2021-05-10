@@ -21,8 +21,8 @@ public class Login {
 	private String password;
 	
 	@Id
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "login_Id")
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name="login_id", referencedColumnName = "user_id")
 	private User user;
 	
 	@Column(name="login_role")
