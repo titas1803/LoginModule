@@ -26,20 +26,20 @@ public class Login {
 	@Column(name="login_role",length=25)
 	private String role;
 	
-//	@OneToOne
-//	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
-//	@MapsId
-//	private User user;
-//	
-//
-//	public User getUser() {
-//		return user;
-//	}
-//
-//
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
+	@OneToOne
+	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
+	@MapsId
+	private User user;
+	
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 
 	public Login() {
