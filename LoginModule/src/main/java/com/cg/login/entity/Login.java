@@ -1,14 +1,11 @@
 package com.cg.login.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -26,7 +23,7 @@ public class Login {
 	@Column(name="login_role",length=25)
 	private String role;
 	
-	@OneToOne
+/*	@OneToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	@MapsId
 	private User user;
@@ -39,8 +36,7 @@ public class Login {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
+	} */
 
 	public Login() {
 		
