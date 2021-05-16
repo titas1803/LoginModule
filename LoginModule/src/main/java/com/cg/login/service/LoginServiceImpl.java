@@ -39,7 +39,7 @@ public class LoginServiceImpl implements ILoginService {
 	@Override
 	public String encryptString(String str) {
 		char[] arr= str.toCharArray();
-		StringBuffer sb= new StringBuffer();
+		StringBuilder sb= new StringBuilder();
 		int ch;
 		for(int idx=0; idx<arr.length; idx++)
 		{
@@ -52,7 +52,7 @@ public class LoginServiceImpl implements ILoginService {
 	@Override
 	public String decryptString(String str) {
 		char[] arr= str.toCharArray();
-		StringBuffer sb= new StringBuffer();
+		StringBuilder sb= new StringBuilder();
 		int ch;
 		for(int idx=0; idx<arr.length; idx++)
 		{
