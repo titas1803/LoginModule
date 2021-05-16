@@ -23,7 +23,7 @@ public class Login {
 	@Column(name="login_role",length=25)
 	private String role;
 	
-/*	@OneToOne
+	@OneToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	@MapsId
 	private User user;
@@ -36,7 +36,7 @@ public class Login {
 
 	public void setUser(User user) {
 		this.user = user;
-	} */
+	} 
 
 	public Login() {
 		

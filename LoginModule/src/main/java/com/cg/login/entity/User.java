@@ -49,7 +49,7 @@ public class User {
 	@Column(name = "user_location")
 	private String location;
 
-	@OneToOne
+	/* @OneToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	@MapsId
 	private Login login;
@@ -60,7 +60,7 @@ public class User {
 
 	public void setLogin(Login login) {
 		this.login = login;
-	} 
+	} */
 
 	public Integer getUserId() {
 		return userId;
