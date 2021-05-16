@@ -10,6 +10,7 @@ import com.cg.login.dao.ILoginDao;
 import com.cg.login.dao.IUserDao;
 import com.cg.login.entity.Login;
 import com.cg.login.entity.User;
+import com.cg.login.exceptions.UserNotFoundException;
 
 @Service("loginservice")
 public class LoginServiceImpl implements ILoginService {
@@ -21,15 +22,15 @@ public class LoginServiceImpl implements ILoginService {
 
 	@Override
 	@Transactional
-	public Integer createLoginAccount(Integer userId, String password, String role) {
+	public Integer createLoginAccount(Integer userId, String password, String role) throws UserNotFoundException {
 		Optional<User> user= userdao.findById(userId);
 		if(!user.isPresent())
 		{
-			
+			throw new UserNotFoundException("User Not Found For Id: "+userId);
 		}
 		Login login=new Login();
 		login.setUserId(userId);
-		login.setPassword(password);
+		login.setPassword(encryptString(password));
 		login.setRole(role);
 		Login persistedLogin= logindao.save(login);
 		return persistedLogin.getUserId();
