@@ -38,7 +38,6 @@ public class LoginServiceImpl implements ILoginService {
 
 	@Override
 	public String encryptString(String str) {
-		// TODO Auto-generated method stub
 		char[] arr= str.toCharArray();
 		StringBuffer sb= new StringBuffer();
 		int ch;
@@ -52,7 +51,6 @@ public class LoginServiceImpl implements ILoginService {
 
 	@Override
 	public String decryptString(String str) {
-		// TODO Auto-generated method stub
 		char[] arr= str.toCharArray();
 		StringBuffer sb= new StringBuffer();
 		int ch;
@@ -62,6 +60,11 @@ public class LoginServiceImpl implements ILoginService {
 			sb.append((char)ch);
 		}
 		return sb.toString();
+	}
+
+	@Override
+	public String encryptLogin(Login loginAcnt) {
+		return encryptString(loginAcnt.getUserId().toString())+"-"+encryptString(loginAcnt.getRole());
 	}
 
 }
