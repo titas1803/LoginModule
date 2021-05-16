@@ -14,57 +14,54 @@ import com.cg.login.exceptions.UserNotFoundException;
 
 @Service("loginservice")
 public class LoginServiceImpl implements ILoginService {
-	
+
 	@Autowired
-	private IUserDao userdao; 
+	private IUserDao userdao;
 	@Autowired
 	private ILoginDao logindao;
 
 	@Override
 	@Transactional
 	public Integer createLoginAccount(Integer userId, String password, String role) throws UserNotFoundException {
-		Optional<User> user= userdao.findById(userId);
-		if(!user.isPresent())
-		{
-			throw new UserNotFoundException("User Not Found For Id: "+userId);
+		Optional<User> user = userdao.findById(userId);
+		if (!user.isPresent()) {
+			throw new UserNotFoundException("User Not Found For Id: " + userId);
 		}
-		Login login=new Login();
+		Login login = new Login();
 		login.setUserId(userId);
 		login.setPassword(encryptString(password));
 		login.setRole(role);
-		Login persistedLogin= logindao.save(login);
+		Login persistedLogin = logindao.save(login);
 		return persistedLogin.getUserId();
 	}
 
 	@Override
 	public String encryptString(String str) {
-		char[] arr= str.toCharArray();
-		StringBuilder sb= new StringBuilder();
+		char[] arr = str.toCharArray();
+		StringBuilder sb = new StringBuilder();
 		int ch;
-		for(int idx=0; idx<arr.length; idx++)
-		{
-			ch=arr[idx]+3;
-			sb.append((char)ch);
+		for (int idx = 0; idx < arr.length; idx++) {
+			ch = arr[idx] + 3;
+			sb.append((char) ch);
 		}
 		return sb.toString();
 	}
 
 	@Override
 	public String decryptString(String str) {
-		char[] arr= str.toCharArray();
-		StringBuilder sb= new StringBuilder();
+		char[] arr = str.toCharArray();
+		StringBuilder sb = new StringBuilder();
 		int ch;
-		for(int idx=0; idx<arr.length; idx++)
-		{
-			ch=arr[idx]-3;
-			sb.append((char)ch);
+		for (int idx = 0; idx < arr.length; idx++) {
+			ch = arr[idx] - 3;
+			sb.append((char) ch);
 		}
 		return sb.toString();
 	}
 
 	@Override
 	public String encryptLogin(Login loginAcnt) {
-		return encryptString(loginAcnt.getUserId().toString())+"-"+encryptString(loginAcnt.getRole());
+		return encryptString(loginAcnt.getUserId().toString()) + "-" + encryptString(loginAcnt.getRole());
 	}
 
 }
