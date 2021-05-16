@@ -3,12 +3,15 @@ package com.cg.login.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.login.dao.ILoginDao;
 import com.cg.login.dao.IUserDao;
 import com.cg.login.entity.Login;
 import com.cg.login.entity.User;
 
+@Service("loginservice")
 public class LoginServiceImpl implements ILoginService {
 	
 	@Autowired
@@ -17,6 +20,7 @@ public class LoginServiceImpl implements ILoginService {
 	private ILoginDao logindao;
 
 	@Override
+	@Transactional
 	public Integer createLoginAccount(Integer userId, String password, String role) {
 		Optional<User> user= userdao.findById(userId);
 		if(!user.isPresent())
