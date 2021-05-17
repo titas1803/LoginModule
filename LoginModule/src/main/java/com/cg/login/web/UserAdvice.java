@@ -13,6 +13,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 
 import com.cg.login.dto.ErrorMessage;
 import com.cg.login.exceptions.*;
+import com.cg.login.util.LoginConstants;
 
 @RestControllerAdvice
 public class UserAdvice {
@@ -32,14 +33,14 @@ public class UserAdvice {
 	@ExceptionHandler(MissingRequestHeaderException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ErrorMessage handleHeaderException(MissingRequestHeaderException ex)	{
-		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "Token Id Must Be In the header");
+		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), LoginConstants.MISSING_REQUEST_HEADER);
 	}
 	
 	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ErrorMessage handleExceptionForDate(MethodArgumentTypeMismatchException ex)	{
 		if(ex.getMessage().contains("LocalDate"))
-			return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "Invalid date pattern");
+			return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), LoginConstants.INVALID_DATE_PATTTERN);
 		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "It must be numeric");
 	}
 	
@@ -48,7 +49,7 @@ public class UserAdvice {
 	public ErrorMessage handleException3(HttpMessageConversionException ex)	{
 		if(ex.getMessage().contains("LocalDate"))
 			return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "Invalid date pattern , follow yyyy-MM-dd");
-		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "It must be numeric");
+		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), LoginConstants.NUMERIC_DATE);
 	}
 	
 	@ExceptionHandler(ValidateUserException.class)

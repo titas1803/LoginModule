@@ -51,7 +51,7 @@ public class LoginRestController {
 		String role=null;
 		Login login=null;
 		if(!service.getAuthMap().containsKey(tokenId)) {
-			throw new LoginException("Login not verified");
+			throw new LoginException(LoginConstants.INVALID_LOGIN);
 		}
 		return true;
 	}
@@ -59,7 +59,7 @@ public class LoginRestController {
 	@GetMapping(value="logout")
 	public SuccessMessage logout(@RequestHeader("token-id") String token, HttpServletRequest req) {
 		service.getAuthMap().remove(token);
-		return new SuccessMessage("logged out");
+		return new SuccessMessage(LoginConstants.LOGGED_OUT);
 	}
 
 }
