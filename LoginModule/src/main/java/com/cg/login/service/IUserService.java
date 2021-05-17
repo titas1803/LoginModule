@@ -12,5 +12,6 @@ public interface IUserService {
 	public Integer createUser(UserDto userdto);
 	public List<User> viewAllUser() throws UserNotFoundException;
 //	public User viewUserById(int userId) throws UserNotFoundException;
+	public List<User> viewByLocation(String location) throws UserNotFoundException;
 	
 }

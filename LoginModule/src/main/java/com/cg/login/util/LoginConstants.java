@@ -7,4 +7,5 @@ public class LoginConstants {
 	public static final String EMPTY_STRING=" ";
 	public static final String USER_CREATED="User Created";
 	public static final String INVALID_LOGIN_TOKEN="Login not verified";
+	public static final String INVALID_LOCATION="Location not Found";
 }

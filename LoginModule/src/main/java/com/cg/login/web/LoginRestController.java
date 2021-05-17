@@ -33,22 +33,6 @@ public class LoginRestController {
 	private ILoginService service;
 	
 	Logger logger=LoggerFactory.getLogger(LoginRestController.class);
-
-	
-
-/*	@PostMapping("createlogin")
-	public SuccessMessage createLogincontroller(@RequestParam("userid") Integer userId, @RequestParam("password") String password,
-			@RequestParam("confirmpassword") String confirmPassword, @RequestParam("role") String role)
-			throws LoginException, UserNotFoundException {
-
-		if (!password.contentEquals(confirmPassword)) {
-			throw new LoginException("Password and Confirm Password doesn't Match");
-		}
-		LoginDto logindto = new LoginDto(userId, password, role);
-		int id= service.createLoginAccount(logindto);
-		return new SuccessMessage("Login created for user id for: "+id);
-		
-	} */
 	
 	@PostMapping("login")
 	public String doLoginController(@Valid @RequestBody LoginDto logindto, BindingResult br) throws LoginException, ValidateUserException

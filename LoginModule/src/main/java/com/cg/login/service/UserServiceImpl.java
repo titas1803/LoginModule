@@ -28,6 +28,10 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private ILoginDao logindao;
+	
+	@Autowired
+	private IUserService userSer;
+	
 
 	Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -63,6 +67,18 @@ public class UserServiceImpl implements IUserService {
 		lst.sort((u1, u2) -> u1.getUserName().compareTo(u2.getUserName()));
 		return lst;
 	}
+
+	@Override
+	public List<User> viewByLocation(String location) throws UserNotFoundException {
+		List<User> lst=userdao.findByLocation(location);
+		if(lst.isEmpty())
+			throw new UserNotFoundException("No Users Found");
+		lst.sort((u1,u2)-> u1.getUserName().compareTo(u2.getUserName()));
+		return lst;
+	}
+
+	
+
 
 	/*
 	 * @Override public User viewUserById(int userId) throws UserNotFoundException {
