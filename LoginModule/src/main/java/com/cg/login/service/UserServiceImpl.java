@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.login.dao.IUserDao;
+import com.cg.login.dto.UserDto;
 import com.cg.login.entity.User;
 import com.cg.login.exceptions.UserNotFoundException;
 
+@Service("myser")
 public class UserServiceImpl implements IUserService{
 	
 	@Autowired
@@ -18,18 +21,16 @@ public class UserServiceImpl implements IUserService{
 
 	@Override
 	@Transactional
-	public Integer createUser(String userName, String contactNo, String emailId, LocalDate userDob, String userAddress,
-			String location) {
+	public Integer createUser(UserDto userdto) {
 		
 		User user=new User();
-		user.setUserName(userName);
-		user.setContactNo(contactNo);
-		user.setEmailId(emailId);
-		user.setUserdob(userDob);
-		user.setUseraddress(userAddress);
-		user.setLocation(location);
+		user.setUserName(userdto.getUserName());
+		user.setContactNo(userdto.getContactNo());
+		user.setEmailId(userdto.getEmailId());
+		user.setUserdob(userdto.getUserDob());
+		user.setUseraddress(userdto.getUserAddress());
+		user.setLocation(userdto.getLocation());
 		User persistedUser=userdao.save(user);
-		
 		
 		return persistedUser.getUserId();
 	}
