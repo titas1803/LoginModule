@@ -2,15 +2,31 @@ package com.cg.login.dto;
 
 import java.time.LocalDate;
 
+
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
+
 public class UserDto {
 	
 	private Integer userId;
 	
+	@NotBlank(message = "userName must not be blank")
 	private String userName;
+	
+	
 	private String contactNo;
+	
+	@NotBlank(message = "emailId must not be blank")
 	private String emailId;
+	
+	@Past(message = "DOB must be past date")
 	private LocalDate userDob;
+	
+	@NotBlank(message = "User address must not be blank")
 	private String userAddress;
+	
+	@NotBlank(message = "location must not be blank")
 	private String location;
 	
 	public UserDto() {

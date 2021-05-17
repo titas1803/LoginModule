@@ -35,7 +35,7 @@ public class UserServiceImpl implements IUserService{
 		return persistedUser.getUserId();
 	}
 
-	@Override
+/*	@Override
 	public List<User> viewAllUser() throws UserNotFoundException {
 		List<User> lst=userdao.findAll();
 		if(lst.isEmpty())
@@ -55,6 +55,6 @@ public class UserServiceImpl implements IUserService{
 		}
 		
 		return user.get();
-	}
+	}*/
 
 }
