@@ -22,6 +22,8 @@ public class UserAdvice {
 		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
 	}
 	
+//	@ExceptionHandler(LoginException.class)
+	
 	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ErrorMessage handleExceptionForDate(MethodArgumentTypeMismatchException ex)	{
