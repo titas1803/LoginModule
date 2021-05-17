@@ -1,10 +1,11 @@
- package com.cg.login.web;
+package com.cg.login.web;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageConversionException;
+import org.springframework.web.bind.MissingRequestHeaderException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -22,7 +23,17 @@ public class UserAdvice {
 		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
 	}
 	
-//	@ExceptionHandler(LoginException.class)
+	@ExceptionHandler(LoginException.class)
+	@ResponseStatus(code = HttpStatus.FORBIDDEN)
+	public ErrorMessage handleLoginException(LoginException ex) {
+		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
+	}
+	
+	@ExceptionHandler(MissingRequestHeaderException.class)
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public ErrorMessage handleHeaderException(MissingRequestHeaderException ex)	{
+		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "Token Id Must Be In the header");
+	}
 	
 	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)

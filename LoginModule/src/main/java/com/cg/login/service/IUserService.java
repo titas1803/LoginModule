@@ -10,7 +10,7 @@ import com.cg.login.exceptions.UserNotFoundException;
 public interface IUserService {
 
 	public Integer createUser(UserDto userdto);
-//	public List<User> viewAllUser() throws UserNotFoundException;
+	public List<User> viewAllUser() throws UserNotFoundException;
 //	public User viewUserById(int userId) throws UserNotFoundException;
 	
 }

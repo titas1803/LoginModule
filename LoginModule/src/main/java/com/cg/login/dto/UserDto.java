@@ -2,22 +2,24 @@ package com.cg.login.dto;
 
 import java.time.LocalDate;
 
-
-
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 
 public class UserDto {
 	
-	private Integer userId;
+//	private Integer userId;
 	
 	@NotBlank(message = "userName must not be blank")
 	private String userName;
 	
-	
+	@NotBlank(message = "COntact must not be blank")
+	@Pattern(regexp = "[0-9]{10}")
 	private String contactNo;
 	
 	@NotBlank(message = "emailId must not be blank")
+	@Email(message = "Invalid email")
 	private String emailId;
 	
 	@Past(message = "DOB must be past date")
@@ -29,40 +31,39 @@ public class UserDto {
 	@NotBlank(message = "location must not be blank")
 	private String location;
 	
+	private String password;
+	
+	@NotBlank(message = "role can't be blank")
+	@Pattern(regexp="(user|admin)")
+	private String role;
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	public UserDto() {
 		
 	}
 
-	public UserDto(Integer userId, String userName, String contactNo, String emailId, LocalDate userDob,
-			String userAddress, String location) {
-		super();
-		this.userId = userId;
-		this.userName = userName;
-		this.contactNo = contactNo;
-		this.emailId = emailId;
-		this.userDob = userDob;
-		this.userAddress = userAddress;
-		this.location = location;
-	}
-
-	public UserDto(String userName, String contactNo, String emailId, LocalDate userDob, String userAddress,
-			String location) {
-		super();
-		this.userName = userName;
-		this.contactNo = contactNo;
-		this.emailId = emailId;
-		this.userDob = userDob;
-		this.userAddress = userAddress;
-		this.location = location;
-	}
-
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
+//	public Integer getUserId() {
+//		return userId;
+//	}
+//
+//	public void setUserId(Integer userId) {
+//		this.userId = userId;
+//	}
 
 	public String getUserName() {
 		return userName;

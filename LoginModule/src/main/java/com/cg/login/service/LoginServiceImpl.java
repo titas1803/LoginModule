@@ -1,5 +1,7 @@
 package com.cg.login.service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -7,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cg.login.dao.ILoginDao;
 import com.cg.login.dao.IUserDao;
@@ -15,8 +18,9 @@ import com.cg.login.entity.Login;
 import com.cg.login.entity.User;
 import com.cg.login.exceptions.LoginException;
 import com.cg.login.exceptions.UserNotFoundException;
+import com.cg.login.util.LoginConstants;
 
-@Service("loginservice")
+@Service
 public class LoginServiceImpl implements ILoginService {
 
 	@Autowired
@@ -26,7 +30,9 @@ public class LoginServiceImpl implements ILoginService {
 
 	Logger logger=LoggerFactory.getLogger(LoginServiceImpl.class);
 	
-	@Override
+	public Map<String, Login> authMap = new HashMap<>();
+	
+/*	@Override
 	@Transactional
 	public Integer createLoginAccount(LoginDto logindto) throws UserNotFoundException {
 		Optional<User> user = userdao.findById(logindto.getUserId());
@@ -39,7 +45,7 @@ public class LoginServiceImpl implements ILoginService {
 		login.setRole(logindto.getRole());
 		Login persistedLogin = logindao.save(login);
 		return persistedLogin.getUserId();
-	}
+	}*/
 
 	@Override
 	public Login doLogin(Integer userId, String password) throws LoginException {
@@ -47,12 +53,25 @@ public class LoginServiceImpl implements ILoginService {
 		logger.debug("doing login process");
 		Optional<Login> optLogin=logindao.findById(userId);
 		if(!optLogin.isPresent())
-			throw new LoginException("Check your credential");
+			throw new LoginException(LoginConstants.CHECK_YOUR_CREDENTIALS);
 		login=optLogin.get();
-		if(!login.getPassword().contentEquals(decryptString(password)))
-			throw new LoginException("Password is Wrong, Check your password");
+		logger.info(password+" "+encryptString(password));
+		if(!login.getPassword().contentEquals(encryptString(password)))
+			throw new LoginException(LoginConstants.PASSWORD_WRONG);
 		logger.info("user logged in for userid "+userId);
 		return login;
+	}
+
+	public String generateToken(Login login) {
+		String token=encryptLogin(login);
+		authMap.put(token, login);
+		return token;
+	}
+	
+	
+
+	public Map<String, Login> getAuthMap() {
+		return authMap;
 	}
 
 	@Override
@@ -84,5 +103,13 @@ public class LoginServiceImpl implements ILoginService {
 		return encryptString(loginAcnt.getUserId().toString()) + "-" + encryptString(loginAcnt.getRole());
 	}
 
+	public boolean verifyLogin(String tokenId) throws LoginException
+	{
+		logger.info("token id"+tokenId);
+		if(!authMap.containsKey(tokenId)) {
+			throw new LoginException(LoginConstants.INVALID_LOGIN_TOKEN);
+		}
+		return true;
+	}
 
 }

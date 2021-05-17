@@ -1,19 +1,17 @@
 package com.cg.login.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class LoginDto {
 
+	@NotNull(message="User Id Cannot be null")
 	private Integer userId;
 	
+	@NotBlank(message = "password required")
 	private String password;
 	
 	private String role;
-
-	public LoginDto(Integer userId, String password, String role) {
-		super();
-		this.userId = userId;
-		this.password = password;
-		this.role = role;
-	}
 
 	public LoginDto() {
 		super();

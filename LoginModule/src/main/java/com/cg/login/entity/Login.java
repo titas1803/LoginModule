@@ -1,5 +1,8 @@
 package com.cg.login.entity;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "login_module_login")
-public class Login {
+public class Login implements Serializable{
 	
 	@Id
 	@Column(name = "user_id")
@@ -23,7 +26,7 @@ public class Login {
 	@Column(name="login_role",length=25)
 	private String role;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	@MapsId
 	private User user;
