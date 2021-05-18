@@ -16,6 +16,7 @@ import com.cg.login.dto.UserDto;
 import com.cg.login.entity.Login;
 import com.cg.login.entity.User;
 import com.cg.login.exceptions.UserNotFoundException;
+import com.cg.login.util.LoginConstants;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -50,7 +51,6 @@ public class UserServiceImpl implements IUserService {
 		logger.info(persistedUser.getUserId() + " " + persistedUser.getUserName());
 		userdao.flush();
 		Login login = new Login();
-//		login.setUserId(persistedUser.getUserId());
 		login.setPassword(loginSer.encryptString(userdto.getPassword()));
 		login.setRole(userdto.getRole());
 		login.setUser(persistedUser);
@@ -62,7 +62,7 @@ public class UserServiceImpl implements IUserService {
 	public List<User> viewAllUser() throws UserNotFoundException {
 		List<User> lst = userdao.findAll();
 		if (lst.isEmpty()) {
-			throw new UserNotFoundException("No User Found");
+			throw new UserNotFoundException(LoginConstants.NO_USER_FOUND);
 		}
 		lst.sort((u1, u2) -> u1.getUserName().compareTo(u2.getUserName()));
 		return lst;
@@ -72,12 +72,20 @@ public class UserServiceImpl implements IUserService {
 	public List<User> viewByLocation(String location) throws UserNotFoundException {
 		List<User> lst=userdao.findByLocation(location);
 		if(lst.isEmpty())
-			throw new UserNotFoundException("No Users Found");
+			throw new UserNotFoundException(LoginConstants.NO_USER_FOUND);
 		lst.sort((u1,u2)-> u1.getUserName().compareTo(u2.getUserName()));
 		return lst;
 	}
 
-	
+	@Override
+	public List<User> viewByName(String userName) throws UserNotFoundException {
+		List<User> lst=userdao.findByName(userName);
+		if(lst.isEmpty())
+			throw new UserNotFoundException(LoginConstants.NO_USER_FOUND);
+		lst.sort((u1,u2)-> u1.getUserName().compareTo(u2.getUserName()));
+		return lst;
+	}
+
 
 
 	/*
@@ -88,6 +96,5 @@ public class UserServiceImpl implements IUserService {
 	 * return user.get(); }
 	 */
 
-//	public List<User> 
 
 }

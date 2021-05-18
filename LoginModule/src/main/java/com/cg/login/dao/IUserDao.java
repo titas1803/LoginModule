@@ -13,5 +13,8 @@ import com.cg.login.entity.User;
 public interface IUserDao extends JpaRepository<User, Integer> {
 	@Query("from User u where u.location = :location")
 	public List<User> findByLocation(@Param("location") String location);
+	
+	@Query("from User u where u.userName like concat(:name,'%')")
+	public List<User> findByName(@Param("username") String userName);
 
 }

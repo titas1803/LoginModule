@@ -13,4 +13,7 @@ public class LoginConstants {
 	public static final String MISSING_REQUEST_HEADER="Token Id Must Be In the header";
 	public static final String INVALID_DATE_PATTTERN="Invalid Date Pattern";
 	public static final String NUMERIC_DATE="Date must be Numeric";
+	public static final String NO_USER_FOUND="No User Found";
+	public static final String ALREADY_LOGGED_IN="Already logged in";
+	
 }

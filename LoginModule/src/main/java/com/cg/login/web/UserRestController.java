@@ -38,8 +38,8 @@ public class UserRestController {
 			throws ValidateUserException {
 		if (br.hasErrors())
 			throw new ValidateUserException(br.getFieldErrors());
-		Integer userId = userSer.createUser(userdto);
-		return new SuccessMessage(LoginConstants.USER_CREATED);
+		Integer userId=userSer.createUser(userdto);
+		return new SuccessMessage(LoginConstants.USER_CREATED+" for id "+userId);
 	}
 
 	@GetMapping("viewusers")
@@ -49,13 +49,20 @@ public class UserRestController {
 			return userSer.viewAllUser();
 		throw new LoginException(LoginConstants.INVALID_LOGIN_TOKEN);
 	}
-//	@RequestHeader("token-id") String tokenId
 
 	@GetMapping("viewbylocation/{location}")
 	public List<User> viewByLocation(@PathVariable("location") String location,
 			@RequestHeader("token-id") String tokenId) throws LoginException, UserNotFoundException {
 		if (loginSer.verifyLogin(tokenId))
 			return userSer.viewByLocation(location);
+		throw new LoginException(LoginConstants.INVALID_LOCATION);
+	}
+	
+	@GetMapping("viewbyname/{userName}")
+	public List<User> viewByName(@PathVariable("userName") String userName,
+			@RequestHeader("token-id") String tokenId) throws LoginException, UserNotFoundException {
+		if (loginSer.verifyLogin(tokenId))
+			return userSer.viewByName(userName);
 		throw new LoginException(LoginConstants.INVALID_LOCATION);
 	}
 

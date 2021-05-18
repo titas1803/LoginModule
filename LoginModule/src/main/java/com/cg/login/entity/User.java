@@ -49,19 +49,6 @@ public class User {
 	@Column(name = "user_location")
 	private String location;
 
-	/* @OneToOne
-	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
-	@MapsId
-	private Login login;
-
-	public Login getLogin() {
-		return login;
-	}
-
-	public void setLogin(Login login) {
-		this.login = login;
-	} */
-
 	public Integer getUserId() {
 		return userId;
 	}

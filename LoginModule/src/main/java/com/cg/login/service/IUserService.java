@@ -13,5 +13,6 @@ public interface IUserService {
 	public List<User> viewAllUser() throws UserNotFoundException;
 //	public User viewUserById(int userId) throws UserNotFoundException;
 	public List<User> viewByLocation(String location) throws UserNotFoundException;
+	public List<User> viewByName(String userName) throws UserNotFoundException;
 	
 }

@@ -37,6 +37,8 @@ public class LoginRestController {
 	@PostMapping("login")
 	public String doLoginController(@Valid @RequestBody LoginDto logindto, BindingResult br) throws LoginException, ValidateUserException
 	{
+		if(!service.getAuthMap().isEmpty())
+			throw new LoginException(LoginConstants.ALREADY_LOGGED_IN);
 		if(br.hasErrors())
 			throw new ValidateUserException(br.getFieldErrors());
 //		logger.info(userId + LoginConstants.EMPTY_STRING);
@@ -48,8 +50,6 @@ public class LoginRestController {
 	public boolean verifyLogin(@RequestParam("token-id") String tokenId) throws LoginException
 	{
 		logger.info("token id"+tokenId);
-		String role=null;
-		Login login=null;
 		if(!service.getAuthMap().containsKey(tokenId)) {
 			throw new LoginException(LoginConstants.INVALID_LOGIN);
 		}

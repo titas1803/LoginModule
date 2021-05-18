@@ -31,21 +31,6 @@ public class LoginServiceImpl implements ILoginService {
 	Logger logger=LoggerFactory.getLogger(LoginServiceImpl.class);
 	
 	public Map<String, Login> authMap = new HashMap<>();
-	
-/*	@Override
-	@Transactional
-	public Integer createLoginAccount(LoginDto logindto) throws UserNotFoundException {
-		Optional<User> user = userdao.findById(logindto.getUserId());
-		if (!user.isPresent()) {
-			throw new UserNotFoundException("User Not Found For Id: " + logindto.getUserId());
-		}
-		Login login = new Login();
-		login.setUserId(logindto.getUserId());
-		login.setPassword(encryptString(logindto.getPassword()));
-		login.setRole(logindto.getRole());
-		Login persistedLogin = logindao.save(login);
-		return persistedLogin.getUserId();
-	}*/
 
 	@Override
 	public Login doLogin(Integer userId, String password) throws LoginException {

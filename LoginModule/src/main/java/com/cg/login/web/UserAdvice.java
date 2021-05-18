@@ -48,7 +48,7 @@ public class UserAdvice {
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ErrorMessage handleException3(HttpMessageConversionException ex)	{
 		if(ex.getMessage().contains("LocalDate"))
-			return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "Invalid date pattern , follow yyyy-MM-dd");
+			return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(),  LoginConstants.INVALID_DATE_PATTTERN+", follow yyyy-MM-dd");
 		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), LoginConstants.NUMERIC_DATE);
 	}
 	
@@ -59,9 +59,5 @@ public class UserAdvice {
 				.map(err-> err.getDefaultMessage()).collect(Collectors.toList());
 		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), errors);
 	}
-	
-//	public ErrorMessage handleException2(DeptException ex) {
-//		return new ErrorMessage(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
-//	}
 
 }

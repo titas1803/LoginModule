@@ -8,7 +8,7 @@ import com.cg.login.exceptions.LoginException;
 import com.cg.login.exceptions.UserNotFoundException;
 
 public interface ILoginService {
-//	public Integer createLoginAccount(LoginDto logindto) throws UserNotFoundException;
+	
 	public Login doLogin(Integer userId, String password) throws LoginException;
 	public String encryptString(String str);
 	public String decryptString(String str);
