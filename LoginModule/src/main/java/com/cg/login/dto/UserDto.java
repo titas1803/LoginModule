@@ -10,6 +10,8 @@ import javax.validation.constraints.Pattern;
 import com.cg.login.util.LoginConstants;
 
 public class UserDto {
+	
+	private Integer userId;
 
 	@NotBlank(message = LoginConstants.USERNAME_BLANK_MESSAGE)
 	private String userName;
@@ -32,7 +34,7 @@ public class UserDto {
 	private String location;
 
 	@NotBlank(message = LoginConstants.PASSWORD_BLANK_MESSAGE)
-	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\\\S+$).{8, 20}$", message = LoginConstants.PASSWORD_PATTERN)
+	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,20}$", message = LoginConstants.PASSWORD_PATTERN)
 	private String password;
 
 	@NotBlank(message = LoginConstants.ROLE_BLANK_MESSAGE)
@@ -105,6 +107,14 @@ public class UserDto {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+	
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 }
