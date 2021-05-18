@@ -53,6 +53,10 @@ public class User {
 		return userId;
 	}
 
+	public User() {
+		super();
+	}
+
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
@@ -89,6 +93,18 @@ public class User {
 		this.userDob = userdob;
 	}
 
+	public User(Integer userId, String userName, String contactNo, String emailId, LocalDate userDob,
+			String userAddress, String location) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.contactNo = contactNo;
+		this.emailId = emailId;
+		this.userDob = userDob;
+		this.userAddress = userAddress;
+		this.location = location;
+	}
+
 	public String getUseraddress() {
 		return userAddress;
 	}
@@ -103,11 +119,6 @@ public class User {
 
 	public void setLocation(String location) {
 		this.location = location;
-	}
-
-	@Override
-	public String toString() {
-		return userId + " " + userName + " " + userDob + " " + userAddress + " " + location + " " + emailId;
 	}
 
 }

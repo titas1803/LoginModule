@@ -7,36 +7,38 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
+import com.cg.login.util.LoginConstants;
+
 public class UserDto {
-	
-//	private Integer userId;
-	
-	@NotBlank(message = "userName must not be blank")
+
+	@NotBlank(message = LoginConstants.USERNAME_BLANK_MESSAGE)
 	private String userName;
-	
-	@NotBlank(message = "COntact must not be blank")
-	@Pattern(regexp = "[0-9]{10}")
+
+	@NotBlank(message = LoginConstants.CONTACTNO_VALIDATION_MESSAGE)
+	@Pattern(regexp = "[0-9]{10}", message = LoginConstants.CONTACTNO_VALIDATION_MESSAGE)
 	private String contactNo;
-	
-	@NotBlank(message = "emailId must not be blank")
+
+	@NotBlank(message = LoginConstants.EMAILID_BLANK_MESSAGE)
 	@Email(message = "Invalid email")
 	private String emailId;
-	
-	@Past(message = "DOB must be past date")
+
+	@Past(message = LoginConstants.DOB_VALIDATION_MESSAGE)
 	private LocalDate userDob;
-	
-	@NotBlank(message = "User address must not be blank")
+
+	@NotBlank(message = LoginConstants.ADDRESS_BLANK_MESSAGE)
 	private String userAddress;
-	
-	@NotBlank(message = "location must not be blank")
+
+	@NotBlank(message = LoginConstants.LOCATION_BLANK_MESSAGE)
 	private String location;
-	
+
+	@NotBlank(message = LoginConstants.PASSWORD_BLANK_MESSAGE)
+	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\\\S+$).{8, 20}$", message = LoginConstants.PASSWORD_PATTERN)
 	private String password;
-	
-	@NotBlank(message = "role can't be blank")
-	@Pattern(regexp="(user|admin)")
+
+	@NotBlank(message = LoginConstants.ROLE_BLANK_MESSAGE)
+	@Pattern(regexp = "(user|admin)", message = LoginConstants.ROLE_VALIDATION_MESSAGE)
 	private String role;
-	
+
 	public String getPassword() {
 		return password;
 	}
@@ -54,16 +56,8 @@ public class UserDto {
 	}
 
 	public UserDto() {
-		
-	}
 
-//	public Integer getUserId() {
-//		return userId;
-//	}
-//
-//	public void setUserId(Integer userId) {
-//		this.userId = userId;
-//	}
+	}
 
 	public String getUserName() {
 		return userName;
@@ -113,5 +107,4 @@ public class UserDto {
 		this.location = location;
 	}
 
-	
 }
