@@ -45,24 +45,33 @@ public class UserRestController {
 	@GetMapping("viewusers")
 	public List<User> viewUsers(@RequestHeader("token-id") String tokenId)
 			throws LoginException, UserNotFoundException {
-		if (loginSer.verifyLogin(tokenId))
-			return userSer.viewAllUser();
+		if (loginSer.verifyLogin(tokenId)) {
+			if(loginSer.isAdmin(tokenId))
+				return userSer.viewAllUser();
+			throw new LoginException(LoginConstants.NOT_ADMIN);
+		}
 		throw new LoginException(LoginConstants.INVALID_LOGIN_TOKEN);
 	}
 
 	@GetMapping("viewbylocation/{location}")
 	public List<User> viewByLocation(@PathVariable("location") String location,
 			@RequestHeader("token-id") String tokenId) throws LoginException, UserNotFoundException {
-		if (loginSer.verifyLogin(tokenId))
-			return userSer.viewByLocation(location);
+		if (loginSer.verifyLogin(tokenId)) {
+			if(loginSer.isAdmin(tokenId))
+				return userSer.viewByLocation(location);
+			throw new LoginException(LoginConstants.NOT_ADMIN);
+		}
 		throw new LoginException(LoginConstants.INVALID_LOGIN_TOKEN);
 	}
 	
 	@GetMapping("viewbyname/{userName}")
 	public List<User> viewByName(@PathVariable("userName") String userName,
 			@RequestHeader("token-id") String tokenId) throws LoginException, UserNotFoundException {
-		if (loginSer.verifyLogin(tokenId))
-			return userSer.viewByName(userName);
+		if (loginSer.verifyLogin(tokenId)) {
+			if(loginSer.isAdmin(tokenId))
+				return userSer.viewByName(userName);
+			throw new LoginException(LoginConstants.NOT_ADMIN);
+		}
 		throw new LoginException(LoginConstants.INVALID_LOGIN_TOKEN);
 	}
 

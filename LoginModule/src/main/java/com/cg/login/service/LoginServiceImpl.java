@@ -99,4 +99,12 @@ public class LoginServiceImpl implements ILoginService {
 		return true;
 	}
 
+	@Override
+	public boolean isAdmin(String tokenid) {
+		if(authMap.get(tokenid).getRole().equals("admin")) {
+			return true;
+		}
+		return false;
+	}
+
 }

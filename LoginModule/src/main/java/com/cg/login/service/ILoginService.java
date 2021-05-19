@@ -16,4 +16,5 @@ public interface ILoginService {
 	public String generateToken(Login login);
 	public Map<String, Login> getAuthMap();
 	public boolean verifyLogin(String tokenId) throws LoginException;
+	public boolean isAdmin(String tokenid);
 }
