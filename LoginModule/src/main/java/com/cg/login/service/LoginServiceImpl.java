@@ -90,6 +90,8 @@ public class LoginServiceImpl implements ILoginService {
 
 	public boolean verifyLogin(String tokenId) throws LoginException
 	{
+		if(tokenId.equals(""))
+			throw new LoginException(LoginConstants.INVALID_LOGIN);
 		logger.info("token id"+tokenId);
 		if(!authMap.containsKey(tokenId)) {
 			throw new LoginException(LoginConstants.INVALID_LOGIN_TOKEN);

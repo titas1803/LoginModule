@@ -55,7 +55,7 @@ public class UserRestController {
 			@RequestHeader("token-id") String tokenId) throws LoginException, UserNotFoundException {
 		if (loginSer.verifyLogin(tokenId))
 			return userSer.viewByLocation(location);
-		throw new LoginException(LoginConstants.INVALID_LOCATION);
+		throw new LoginException(LoginConstants.INVALID_LOGIN_TOKEN);
 	}
 	
 	@GetMapping("viewbyname/{userName}")
@@ -63,7 +63,7 @@ public class UserRestController {
 			@RequestHeader("token-id") String tokenId) throws LoginException, UserNotFoundException {
 		if (loginSer.verifyLogin(tokenId))
 			return userSer.viewByName(userName);
-		throw new LoginException(LoginConstants.INVALID_LOCATION);
+		throw new LoginException(LoginConstants.INVALID_LOGIN_TOKEN);
 	}
 
 }

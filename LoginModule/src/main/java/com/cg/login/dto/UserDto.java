@@ -10,7 +10,7 @@ import javax.validation.constraints.Pattern;
 import com.cg.login.util.LoginConstants;
 
 public class UserDto {
-	
+
 	private Integer userId;
 
 	@NotBlank(message = LoginConstants.USERNAME_BLANK_MESSAGE)
@@ -108,13 +108,27 @@ public class UserDto {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	
+
 	public Integer getUserId() {
 		return userId;
 	}
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+
+	public UserDto(Integer userId, String userName, String contactNo, String emailId, LocalDate userDob,
+			String userAddress, String location, String password, String role) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.contactNo = contactNo;
+		this.emailId = emailId;
+		this.userDob = userDob;
+		this.userAddress = userAddress;
+		this.location = location;
+		this.password = password;
+		this.role = role;
 	}
 
 }

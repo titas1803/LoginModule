@@ -41,14 +41,14 @@ public class UserServiceImpl implements IUserService {
 	public Integer createUser(UserDto userdto) {
 
 		User user = new User();
-		user.setUserName(userdto.getUserName());
+		user.setUserName(userdto.getUserName().toLowerCase());
 		user.setContactNo(userdto.getContactNo());
 		user.setEmailId(userdto.getEmailId());
 		user.setUserdob(userdto.getUserDob());
 		user.setUseraddress(userdto.getUserAddress());
-		user.setLocation(userdto.getLocation());
+		user.setLocation(userdto.getLocation().toLowerCase());
 		User persistedUser = userdao.save(user);
-		logger.info(persistedUser.getUserId() + " " + persistedUser.getUserName());
+//		logger.info(persistedUser.getUserId() + " " + persistedUser.getUserName());
 		userdao.flush();
 		Login login = new Login();
 		login.setPassword(loginSer.encryptString(userdto.getPassword()));
@@ -70,7 +70,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public List<User> viewByLocation(String location) throws UserNotFoundException {
-		List<User> lst=userdao.findByLocation(location);
+		List<User> lst=userdao.findByLocation(location.toLowerCase());
 		if(lst.isEmpty())
 			throw new UserNotFoundException(LoginConstants.NO_USER_FOUND);
 		lst.sort((u1,u2)-> u1.getUserName().compareTo(u2.getUserName()));
@@ -79,7 +79,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public List<User> viewByName(String userName) throws UserNotFoundException {
-		List<User> lst=userdao.findByName(userName);
+		List<User> lst=userdao.findByName(userName.toLowerCase());
 		if(lst.isEmpty())
 			throw new UserNotFoundException(LoginConstants.NO_USER_FOUND);
 		lst.sort((u1,u2)-> u1.getUserName().compareTo(u2.getUserName()));

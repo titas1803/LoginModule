@@ -41,12 +41,11 @@ public class Login implements Serializable{
 		this.user = user;
 	} 
 
-	public Login(Integer userId, String password, String role, User user) {
+	public Login(Integer userId, String password, String role) {
 		super();
 		this.userId = userId;
 		this.password = password;
 		this.role = role;
-		this.user = user;
 	}
 
 

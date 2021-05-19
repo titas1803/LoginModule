@@ -15,7 +15,7 @@ public interface IUserDao extends JpaRepository<User, Integer> {
 	@Query("from User u where u.location = :location")
 	public List<User> findByLocation(@Param("location") String location);
 	
-	@Query("from User u where u.userName like :username%")
+	@Query("from User u where u.userName like %:username%")
 	public List<User> findByName(@Param("username") String userName);
 
 }
