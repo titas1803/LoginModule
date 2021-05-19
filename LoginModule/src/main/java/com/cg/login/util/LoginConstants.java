@@ -26,7 +26,7 @@ public class LoginConstants {
 	public static final String ROLE_VALIDATION_MESSAGE = "role must be either user or admin";
 	public static final String PASSWORD_BLANK_MESSAGE = "password must not be blank";
 	public static final String PASSWORD_REQUIRED_MESSAGE = "password required";
-	public static final String PASSWORD_PATTERN = "password must contain: \n one uppercase letter \n one lowercase letter \n one numeric value \n one special character \n and length must be within 8 to 20";
+	public static final String PASSWORD_PATTERN = "password must contain: \r\n one uppercase letter \r\n one lowercase letter \r\n one numeric value \r\n one special character \r\n and length must be within 8 to 20";
 	public static final String USERID_NOTNULL_MESSAGE = "User Id Cannot be null";
 
 }
