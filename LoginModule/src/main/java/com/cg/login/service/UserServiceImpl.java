@@ -48,7 +48,6 @@ public class UserServiceImpl implements IUserService {
 		user.setUseraddress(userdto.getUserAddress());
 		user.setLocation(userdto.getLocation().toLowerCase());
 		User persistedUser = userdao.save(user);
-//		logger.info(persistedUser.getUserId() + " " + persistedUser.getUserName());
 		userdao.flush();
 		Login login = new Login();
 		login.setPassword(loginSer.encryptString(userdto.getPassword()));

@@ -41,7 +41,7 @@ public class UserAdvice {
 	public ErrorMessage handleExceptionForDate(MethodArgumentTypeMismatchException ex)	{
 		if(ex.getMessage().contains("LocalDate"))
 			return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), LoginConstants.INVALID_DATE_PATTTERN);
-		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), "It must be numeric");
+		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), LoginConstants.MUST_BE_NUMERIC);
 	}
 	
 	@ExceptionHandler(HttpMessageConversionException.class)

@@ -40,10 +40,8 @@ public class LoginServiceImpl implements ILoginService {
 		if(!optLogin.isPresent())
 			throw new LoginException(LoginConstants.CHECK_YOUR_CREDENTIALS);
 		login=optLogin.get();
-		logger.info(password+" "+encryptString(password));
 		if(!login.getPassword().contentEquals(encryptString(password)))
 			throw new LoginException(LoginConstants.PASSWORD_WRONG);
-		logger.info("user logged in for userid "+userId);
 		return login;
 	}
 
@@ -90,9 +88,6 @@ public class LoginServiceImpl implements ILoginService {
 
 	public boolean verifyLogin(String tokenId) throws LoginException
 	{
-		if(tokenId.equals(""))
-			throw new LoginException(LoginConstants.INVALID_LOGIN);
-		logger.info("token id"+tokenId);
 		if(!authMap.containsKey(tokenId)) {
 			throw new LoginException(LoginConstants.INVALID_LOGIN_TOKEN);
 		}
@@ -101,9 +96,8 @@ public class LoginServiceImpl implements ILoginService {
 
 	@Override
 	public boolean isAdmin(String tokenid) {
-		if(authMap.get(tokenid).getRole().equals("admin")) {
+		if(authMap.get(tokenid).getRole().equals("admin"))
 			return true;
-		}
 		return false;
 	}
 
