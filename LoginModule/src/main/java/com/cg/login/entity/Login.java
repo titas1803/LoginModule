@@ -1,7 +1,5 @@
 package com.cg.login.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "login_module_login")
-public class Login implements Serializable{
+public class Login{
 	
 	@Id
 	@Column(name = "user_id")
@@ -21,7 +19,6 @@ public class Login implements Serializable{
 	
 	@Column(name="login_password",length=25)
 	private String password;
-	
 	
 	@Column(name="login_role",length=25)
 	private String role;

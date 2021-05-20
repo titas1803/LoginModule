@@ -58,7 +58,7 @@ public class UserDto {
 	}
 
 	public UserDto() {
-
+		super();
 	}
 
 	public String getUserName() {
@@ -115,20 +115,6 @@ public class UserDto {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
-	}
-
-	public UserDto(Integer userId, String userName, String contactNo, String emailId, LocalDate userDob,
-			String userAddress, String location, String password, String role) {
-		super();
-		this.userId = userId;
-		this.userName = userName;
-		this.contactNo = contactNo;
-		this.emailId = emailId;
-		this.userDob = userDob;
-		this.userAddress = userAddress;
-		this.location = location;
-		this.password = password;
-		this.role = role;
 	}
 
 }

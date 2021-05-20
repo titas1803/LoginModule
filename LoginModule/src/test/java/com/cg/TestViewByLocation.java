@@ -22,7 +22,7 @@ import com.cg.login.service.IUserService;
 import com.cg.login.service.UserServiceImpl;
 
 @SpringBootTest
-public class TestViewByLocation {
+class TestViewByLocation {
 
 	@Mock
 	private IUserDao userdao;
@@ -42,13 +42,13 @@ public class TestViewByLocation {
 	
 	@Test
 	@DisplayName(value = "testViewByLocation for kolkata")
-	public void testViewByLocation1() throws UserNotFoundException {
+	void testViewByLocation1() throws UserNotFoundException {
 		assertTrue(userSer.viewByLocation("kolkata").size()>0);
 	}
 	
 	@Test
 	@DisplayName(value = "testViewByLocation for abcd")
-	public void testViewByLocation2() throws UserNotFoundException {
+	void testViewByLocation2() throws UserNotFoundException {
 		assertThrows(UserNotFoundException.class, ()->userSer.viewByLocation("abcd"));
 	}
 }

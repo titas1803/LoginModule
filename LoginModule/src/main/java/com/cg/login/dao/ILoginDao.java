@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.cg.login.entity.Login;
-import com.cg.login.entity.User;
 
 @Repository
 public interface ILoginDao extends JpaRepository<Login, Integer> {

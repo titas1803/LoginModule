@@ -30,4 +30,9 @@ public class LoginConstants {
 	public static final String PASSWORD_PATTERN = "password must contain: \r\n one uppercase letter \r\n one lowercase letter \r\n one numeric value \r\n one special character \r\n and length must be within 8 to 20";
 	public static final String USERID_NOTNULL_MESSAGE = "User Id Cannot be null";
 	public static final String NOT_ADMIN="You are not a admin";
+	private LoginConstants() {
+		super();
+	}
+	
+	
 }

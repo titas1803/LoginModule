@@ -1,9 +1,6 @@
 package com.cg.login.service;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,16 +81,5 @@ public class UserServiceImpl implements IUserService {
 		lst.sort((u1,u2)-> u1.getUserName().compareTo(u2.getUserName()));
 		return lst;
 	}
-
-
-
-	/*
-	 * @Override public User viewUserById(int userId) throws UserNotFoundException {
-	 * Optional<User> user=userdao.findById(userId); if(!user.isPresent()) { throw
-	 * new UserNotFoundException("User Not Found For Id: "+userId); }
-	 * 
-	 * return user.get(); }
-	 */
-
 
 }

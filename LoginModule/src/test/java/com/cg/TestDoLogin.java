@@ -22,7 +22,7 @@ import com.cg.login.service.ILoginService;
 import com.cg.login.service.LoginServiceImpl;
 
 @SpringBootTest
-public class TestDoLogin {
+class TestDoLogin {
 
 	@Mock
 	private ILoginDao logindao;

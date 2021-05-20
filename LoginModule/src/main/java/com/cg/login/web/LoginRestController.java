@@ -1,8 +1,5 @@
 package com.cg.login.web;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -21,7 +18,6 @@ import com.cg.login.dto.LoginDto;
 import com.cg.login.dto.SuccessMessage;
 import com.cg.login.entity.Login;
 import com.cg.login.exceptions.LoginException;
-import com.cg.login.exceptions.UserNotFoundException;
 import com.cg.login.exceptions.ValidateUserException;
 import com.cg.login.service.ILoginService;
 import com.cg.login.util.LoginConstants;

@@ -2,10 +2,8 @@ package com.cg.login.service;
 
 import java.util.Map;
 
-import com.cg.login.dto.LoginDto;
 import com.cg.login.entity.Login;
 import com.cg.login.exceptions.LoginException;
-import com.cg.login.exceptions.UserNotFoundException;
 
 public interface ILoginService {
 	

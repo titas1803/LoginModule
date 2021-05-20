@@ -6,15 +6,17 @@ import org.springframework.validation.FieldError;
 
 public class ValidateUserException extends Exception{
 
-	private List<FieldError> errors;
+	private final List<FieldError> errors;
 	
 	public ValidateUserException() {
 		super();
+		this.errors = null;
 
 	}
 
 	public ValidateUserException(String arg0) {
 		super(arg0);
+		this.errors = null;
 	}
 	
 	public ValidateUserException(List<FieldError> errors) {

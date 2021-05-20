@@ -8,29 +8,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.cg.login.dao.ILoginDao;
-import com.cg.login.dao.IUserDao;
-import com.cg.login.dto.LoginDto;
 import com.cg.login.entity.Login;
-import com.cg.login.entity.User;
 import com.cg.login.exceptions.LoginException;
-import com.cg.login.exceptions.UserNotFoundException;
 import com.cg.login.util.LoginConstants;
 
 @Service
 public class LoginServiceImpl implements ILoginService {
 
 	@Autowired
-	private IUserDao userdao;
-	@Autowired
 	private ILoginDao logindao;
 
 	Logger logger=LoggerFactory.getLogger(LoginServiceImpl.class);
 	
-	public Map<String, Login> authMap = new HashMap<>();
+	Map<String, Login> authMap = new HashMap<>();
 
 	@Override
 	public Login doLogin(Integer userId, String password) throws LoginException {
@@ -96,9 +87,12 @@ public class LoginServiceImpl implements ILoginService {
 
 	@Override
 	public boolean isAdmin(String tokenid) {
+		boolean role=true;
 		if(authMap.get(tokenid).getRole().equals("admin"))
-			return true;
-		return false;
+			role=true;
+		else
+			role=false;
+		return role;
 	}
 
 }
