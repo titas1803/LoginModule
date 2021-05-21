@@ -31,6 +31,9 @@ public class UserRestController {
 	@Autowired
 	private ILoginService loginSer;
 
+	/*
+	 * Controller Method for creating new Account
+	 */
 	@PostMapping("createuser")
 	public SuccessMessage createUserRegistration(@Valid @RequestBody UserDto userdto, BindingResult br)
 			throws ValidateUserException {
@@ -40,6 +43,9 @@ public class UserRestController {
 		return new SuccessMessage(LoginConstants.USER_CREATED+" for id "+userId);
 	}
 
+	/*
+	 * Controller Method to view all users' details
+	 */
 	@GetMapping("viewusers")
 	public List<User> viewUsers(@RequestHeader("token-id") String tokenId)
 			throws LoginException, UserNotFoundException {
@@ -51,6 +57,9 @@ public class UserRestController {
 		throw new LoginException(LoginConstants.INVALID_LOGIN_TOKEN);
 	}
 
+	/*
+	 * Controller Method to view all users of a specific location
+	 */
 	@GetMapping("viewbylocation/{location}")
 	public List<User> viewByLocation(@PathVariable("location") String location,
 			@RequestHeader("token-id") String tokenId) throws LoginException, UserNotFoundException {
@@ -62,6 +71,9 @@ public class UserRestController {
 		throw new LoginException(LoginConstants.INVALID_LOGIN_TOKEN);
 	}
 	
+	/*
+	 * Controller method to view all users of a specific name
+	 */
 	@GetMapping("viewbyname/{userName}")
 	public List<User> viewByName(@PathVariable("userName") String userName,
 			@RequestHeader("token-id") String tokenId) throws LoginException, UserNotFoundException {
