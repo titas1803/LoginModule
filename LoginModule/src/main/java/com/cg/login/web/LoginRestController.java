@@ -31,6 +31,9 @@ public class LoginRestController {
 	
 	Logger logger=LoggerFactory.getLogger(LoginRestController.class);
 	
+	/*
+	 * Controller Method for Login
+	 */
 	@PostMapping("login")
 	public LoginResponse doLoginController(@Valid @RequestBody LoginDto logindto, BindingResult br) throws LoginException, ValidateUserException
 	{
@@ -46,15 +49,9 @@ public class LoginRestController {
 		return response;
 	}
 	
-	@PostMapping(value="verifylogin")
-	public boolean verifyLogin(@RequestParam("token-id") String tokenId) throws LoginException
-	{
-		if(!service.getAuthMap().containsKey(tokenId)) {
-			throw new LoginException(LoginConstants.INVALID_LOGIN);
-		}
-		return true;
-	}
-	
+	/*
+	 * Controller method for logging out
+	 */
 	@GetMapping(value="logout")
 	public SuccessMessage logout(@RequestHeader("token-id") String token, HttpServletRequest req) {
 		service.getAuthMap().remove(token);

@@ -33,6 +33,10 @@ public class UserServiceImpl implements IUserService {
 
 	Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
+	
+	/*
+	 * Method to create new User account
+	 */
 	@Override
 	@Transactional
 	public Integer createUser(UserDto userdto) {
@@ -63,6 +67,9 @@ public class UserServiceImpl implements IUserService {
 		this.loginSer = loginSer;
 	}
 
+	/*
+	 * Method to View all existing users details
+	 */
 	@Override
 	public List<User> viewAllUser() throws UserNotFoundException {
 		List<User> lst = userdao.findAll();
@@ -73,6 +80,9 @@ public class UserServiceImpl implements IUserService {
 		return lst;
 	}
 
+	/*
+	 * Method to view all users details of a specific location
+	 */
 	@Override
 	public List<User> viewByLocation(String location) throws UserNotFoundException {
 		List<User> lst=userdao.findByLocation(location.toLowerCase());
@@ -82,6 +92,9 @@ public class UserServiceImpl implements IUserService {
 		return lst;
 	}
 
+	/*
+	 * method to view all users of a specific name
+	 */
 	@Override
 	public List<User> viewByName(String userName) throws UserNotFoundException {
 		List<User> lst=userdao.findByName(userName.toLowerCase());

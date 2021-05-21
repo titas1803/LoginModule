@@ -59,5 +59,7 @@ public class UserAdvice {
 				.map(err-> err.getDefaultMessage()).collect(Collectors.toList());
 		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), errors);
 	}
+	
+//	public ErrorMessage handleException2(oracle.jdbc.oracleDatabase ex)
 
 }
