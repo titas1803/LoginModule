@@ -117,4 +117,18 @@ public class UserDto {
 		this.userId = userId;
 	}
 
+	public UserDto(Integer userId, String userName, String contactNo, String emailId, LocalDate userDob,
+			String userAddress, String location, String password, String role) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.contactNo = contactNo;
+		this.emailId = emailId;
+		this.userDob = userDob;
+		this.userAddress = userAddress;
+		this.location = location;
+		this.password = password;
+		this.role = role;
+	}
+
 }

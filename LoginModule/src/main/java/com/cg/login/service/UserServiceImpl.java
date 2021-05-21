@@ -54,6 +54,15 @@ public class UserServiceImpl implements IUserService {
 		return persistedUser.getUserId();
 	}
 
+	public UserServiceImpl() {
+		super();
+	}
+
+	public UserServiceImpl(ILoginService loginSer) {
+		super();
+		this.loginSer = loginSer;
+	}
+
 	@Override
 	public List<User> viewAllUser() throws UserNotFoundException {
 		List<User> lst = userdao.findAll();

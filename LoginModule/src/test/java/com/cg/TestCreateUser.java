@@ -1,6 +1,7 @@
 package com.cg;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -31,10 +32,11 @@ public class TestCreateUser {
 	private ILoginDao logindao;
 	@Mock
 	private IUserDao userdao;
-	@InjectMocks
-	private IUserService userSer=new UserServiceImpl();
+
 	@InjectMocks
 	private ILoginService  loginSer=new LoginServiceImpl();
+	@InjectMocks
+	private IUserService userSer=new UserServiceImpl(loginSer);
 	
 	@BeforeEach
 	public void beforeEach() {
@@ -48,8 +50,16 @@ public class TestCreateUser {
 	@DisplayName(value = "testCreateUser 1")
 	public void testCreateUser()
 	{
-		UserDto userdto=new UserDto(1001, "abcd", "1234567890", "abcd@ghf.com", LocalDate.of(2020, 12, 30), "sodepur", "kolkata", "Abcd@123", "user");
-		assertEquals(userSer.createUser(userdto), 1001);
+		UserDto userdto=new UserDto(1001, "abcd", "1234567890", "abcd@ghf.com", LocalDate.of(2020, 12, 30), "sodepur", "kolkata", "Abcd@123", "user");		
+		assertNotNull(userSer.createUser(userdto));
 	}
-	
 }
+
+
+
+
+
+
+
+
+

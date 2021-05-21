@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.login.dto.LoginDto;
+import com.cg.login.dto.LoginResponse;
 import com.cg.login.dto.SuccessMessage;
 import com.cg.login.entity.Login;
 import com.cg.login.exceptions.LoginException;
@@ -31,14 +32,18 @@ public class LoginRestController {
 	Logger logger=LoggerFactory.getLogger(LoginRestController.class);
 	
 	@PostMapping("login")
-	public String doLoginController(@Valid @RequestBody LoginDto logindto, BindingResult br) throws LoginException, ValidateUserException
+	public LoginResponse doLoginController(@Valid @RequestBody LoginDto logindto, BindingResult br) throws LoginException, ValidateUserException
 	{
 		if(!service.getAuthMap().isEmpty())
 			throw new LoginException(LoginConstants.ALREADY_LOGGED_IN);
 		if(br.hasErrors())
 			throw new ValidateUserException(br.getFieldErrors());
 		Login login=service.doLogin(logindto.getUserId(), logindto.getPassword());
-		return service.generateToken(login);
+		LoginResponse response= new LoginResponse();
+		response.setToken(service.generateToken(login));
+		response.setUserName(login.getUser().getUserName());
+		response.setRole(login.getRole());
+		return response;
 	}
 	
 	@PostMapping(value="verifylogin")
