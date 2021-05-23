@@ -27,9 +27,6 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
 	private ILoginDao logindao;
 	
-	@Autowired
-	private IUserService userSer;
-	
 
 	Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
