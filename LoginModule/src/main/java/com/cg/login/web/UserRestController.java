@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.login.dto.SuccessMessage;
 import com.cg.login.dto.UserDto;
 import com.cg.login.entity.User;
+import com.cg.login.exceptions.AlreadyExists;
 import com.cg.login.exceptions.LoginException;
 import com.cg.login.exceptions.UserNotFoundException;
 import com.cg.login.exceptions.ValidateUserException;
@@ -36,7 +37,7 @@ public class UserRestController {
 	 */
 	@PostMapping("createuser")
 	public SuccessMessage createUserRegistration(@Valid @RequestBody UserDto userdto, BindingResult br)
-			throws ValidateUserException {
+			throws ValidateUserException, AlreadyExists {
 		if (br.hasErrors())
 			throw new ValidateUserException(br.getFieldErrors());
 		Integer userId=userSer.createUser(userdto);

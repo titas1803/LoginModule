@@ -1,6 +1,8 @@
 package com.cg.login.service;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import com.cg.login.dao.IUserDao;
 import com.cg.login.dto.UserDto;
 import com.cg.login.entity.Login;
 import com.cg.login.entity.User;
+import com.cg.login.exceptions.AlreadyExists;
 import com.cg.login.exceptions.UserNotFoundException;
 import com.cg.login.util.LoginConstants;
 
@@ -36,8 +39,13 @@ public class UserServiceImpl implements IUserService {
 	 */
 	@Override
 	@Transactional
-	public Integer createUser(UserDto userdto) {
-
+	public Integer createUser(UserDto userdto) throws AlreadyExists {
+		Optional<User> optUserbyCon=userdao.findByContact(userdto.getContactNo());
+		if(optUserbyCon.isPresent())
+			throw new AlreadyExists(LoginConstants.CONTACT_EXISTS);
+		Optional<User> optUserbyEmail=userdao.findByEmail(userdto.getEmailId());
+		if(optUserbyEmail.isPresent())
+			throw new AlreadyExists(LoginConstants.EMAILID_EXISTS);
 		User user = new User();
 		user.setUserName(userdto.getUserName().toLowerCase());
 		user.setContactNo(userdto.getContactNo());

@@ -18,6 +18,7 @@ import com.cg.login.dao.IUserDao;
 import com.cg.login.dto.UserDto;
 import com.cg.login.entity.Login;
 import com.cg.login.entity.User;
+import com.cg.login.exceptions.AlreadyExists;
 import com.cg.login.service.ILoginService;
 import com.cg.login.service.IUserService;
 import com.cg.login.service.LoginServiceImpl;
@@ -46,7 +47,7 @@ class TestCreateUser {
 	
 	@Test
 	@DisplayName(value = "testCreateUser 1")
-	void testCreateUser()
+	void testCreateUser() throws AlreadyExists
 	{
 		UserDto userdto=new UserDto(1001, "abcd", "1234567890", "abcd@ghf.com", LocalDate.of(2020, 12, 30), "sodepur", "kolkata", "Abcd@123", "user");		
 		assertNotNull(userSer.createUser(userdto));

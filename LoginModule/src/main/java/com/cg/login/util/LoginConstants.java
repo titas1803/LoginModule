@@ -30,6 +30,8 @@ public class LoginConstants {
 	public static final String PASSWORD_PATTERN = "password must contain: 1. one uppercase letter 2. one lowercase letter 3. one numeric value 4. one special character 5. and length must be within 8 to 20";
 	public static final String USERID_NOTNULL_MESSAGE = "User Id Cannot be null";
 	public static final String NOT_ADMIN="You are not a admin";
+	public static final String CONTACT_EXISTS="Account with same contact already exists";
+	public static final String EMAILID_EXISTS="Account with same email id already exists";
 	private LoginConstants() {
 		super();
 	}
