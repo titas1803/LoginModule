@@ -60,5 +60,10 @@ public class UserAdvice {
 		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), errors);
 	}
 	
+	@ExceptionHandler(AlreadyExists.class)
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public ErrorMessage handleAlreadyExistsException(AlreadyExists ex) {
+		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(),ex.getMessage());
+	}
 
 }
