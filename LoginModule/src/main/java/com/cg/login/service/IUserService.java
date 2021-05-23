@@ -7,6 +7,9 @@ import com.cg.login.entity.User;
 import com.cg.login.exceptions.AlreadyExists;
 import com.cg.login.exceptions.UserNotFoundException;
 
+/*
+ * Created by Soumendu Maitra
+ */
 public interface IUserService {
 
 	public Integer createUser(UserDto userdto) throws AlreadyExists;

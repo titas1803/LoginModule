@@ -9,6 +9,9 @@ import javax.validation.constraints.Pattern;
 
 import com.cg.login.util.LoginConstants;
 
+/*
+ * Created by Soumendu Maitra
+ */
 public class UserDto {
 
 	private Integer userId;

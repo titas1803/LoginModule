@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import com.cg.login.entity.User;
 
+/*
+ * Created by Soumendu Maitra
+ */
 @Repository
 public interface IUserDao extends JpaRepository<User, Integer> {
 	@Query("from User u where u.location = :location")

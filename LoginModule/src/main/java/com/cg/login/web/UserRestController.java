@@ -23,6 +23,9 @@ import com.cg.login.service.ILoginService;
 import com.cg.login.service.IUserService;
 import com.cg.login.util.LoginConstants;
 
+/*
+ * Created by Soumendu Maitra
+ */
 @RestController
 public class UserRestController {
 

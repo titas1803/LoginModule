@@ -5,6 +5,9 @@ import java.util.Map;
 import com.cg.login.entity.Login;
 import com.cg.login.exceptions.LoginException;
 
+/*
+ * Created By Titas Sarkar
+ */
 public interface ILoginService {
 	
 	public Login doLogin(Integer userId, String password) throws LoginException;

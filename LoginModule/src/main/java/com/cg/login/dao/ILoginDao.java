@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.cg.login.entity.Login;
 
+/*
+ * Created By Titas Sarkar
+ */
 @Repository
 public interface ILoginDao extends JpaRepository<Login, Integer> {
 

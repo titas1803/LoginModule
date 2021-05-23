@@ -18,6 +18,9 @@ import com.cg.login.exceptions.AlreadyExists;
 import com.cg.login.exceptions.UserNotFoundException;
 import com.cg.login.util.LoginConstants;
 
+/*
+ * Created by Soumendu Maitra
+ */
 @Service
 public class UserServiceImpl implements IUserService {
 
