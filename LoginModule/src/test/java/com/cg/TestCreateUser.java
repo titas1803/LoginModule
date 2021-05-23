@@ -1,6 +1,5 @@
 package com.cg;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -12,7 +11,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.internal.matchers.Any;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cg.login.dao.ILoginDao;
@@ -26,7 +24,7 @@ import com.cg.login.service.LoginServiceImpl;
 import com.cg.login.service.UserServiceImpl;
 
 @SpringBootTest
-public class TestCreateUser {
+class TestCreateUser {
 
 	@Mock
 	private ILoginDao logindao;
@@ -48,7 +46,7 @@ public class TestCreateUser {
 	
 	@Test
 	@DisplayName(value = "testCreateUser 1")
-	public void testCreateUser()
+	void testCreateUser()
 	{
 		UserDto userdto=new UserDto(1001, "abcd", "1234567890", "abcd@ghf.com", LocalDate.of(2020, 12, 30), "sodepur", "kolkata", "Abcd@123", "user");		
 		assertNotNull(userSer.createUser(userdto));

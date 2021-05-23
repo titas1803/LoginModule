@@ -56,10 +56,9 @@ public class UserAdvice {
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ErrorMessage handleException2(ValidateUserException ex) {
 		List<String> errors=ex.getErrors().stream()
-				.map(err-> err.getDefaultMessage()).collect(Collectors.toList());
+				.map(err->err.getDefaultMessage()).collect(Collectors.toList());
 		return new ErrorMessage(HttpStatus.BAD_REQUEST.toString(), errors);
 	}
 	
-//	public ErrorMessage handleException2(oracle.jdbc.oracleDatabase ex)
 
 }
